@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.argus.banking.customer.dto.CreateCustomerRequest;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {
@@ -21,7 +23,9 @@ public class CustomerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Customer createCustomer(@RequestBody CreateCustomerRequest request) {
+    public Customer createCustomer(
+            @Valid @RequestBody CreateCustomerRequest request
+    ) {
         return customerService.createCustomer(request);
     }
 }
